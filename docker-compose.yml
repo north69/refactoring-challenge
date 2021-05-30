@@ -6,12 +6,12 @@ services:
       - 80:80
     volumes:
       - ./docker/nginx/logs/:/var/log/nginx
-      - ./jobs:/var/www/jobs
+      - .:/var/www/jobs
   php:
     build: docker/php
     restart: always
     volumes:
-      - ./jobs:/var/www/jobs
+      - .:/var/www/jobs
   db:
     image: mysql:8.0.12
     command: --default-authentication-plugin=mysql_native_password
@@ -29,5 +29,5 @@ services:
   composer:
     image: composer:1.7.2
     volumes:
-      - "./jobs/:/app"
+      - ".:/app"
     command: install
